@@ -18,13 +18,13 @@ Before we begin, you should have the following prerequisites:
 
 We will be using Hardhat, a development environment that makes it easy to compile, deploy, and test your smart contracts. To install Hardhat, open your terminal or command prompt and navigate to your project directory. Then, run the following command:
 
-```
+```bash
 npm install --save-dev hardhat
 ```
 
 Once Hardhat is installed, create a new project by running the following command:
 
-```
+```bash
 npx hardhat
 ```
 
