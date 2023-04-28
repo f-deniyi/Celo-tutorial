@@ -14,7 +14,7 @@ Before we begin, you should have the following prerequisites:
 - A Celo account to deploy and test the contract
 - A text editor or IDE for writing code (e.g., Visual Studio Code, Sublime Text, or Atom)
 
-Step 1: Set up your Development Environment
+## Step 1: Set up your Development Environment
 
 We will be using Hardhat, a development environment that makes it easy to compile, deploy, and test your smart contracts. To install Hardhat, open your terminal or command prompt and navigate to your project directory. Then, run the following command:
 
@@ -30,11 +30,11 @@ npx hardhat
 
 This will prompt you to choose a network. Select the default option (localhost) and press Enter.
 
-Step 2: Write Your Smart Contract
+## Step 2: Write Your Smart Contract
 
 Next, you will need to write your smart contract. For this tutorial, we will use a simple example contract that increments a counter when a function is called. Open your text editor and create a new file called `Counter.sol`. Add the following code:
 
-```
+``` solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -49,11 +49,11 @@ contract Counter {
 
 This contract creates a public `count` variable and a public function `increment()` that increments the `count` variable by 1.
 
-Step 3: Write Your Contract Tests
+## Step 3: Write Your Contract Tests
 
 Now that you have written your smart contract, it's time to write your tests. Create a new file called `counter.test.js` in the `test` directory that Hardhat created for you. Add the following code:
 
-```
+```javascript
 const { expect } = require("chai");
 
 describe("Counter contract", function () {
@@ -83,7 +83,7 @@ Step 4: Run Your Tests
 
 Now that you have written your tests, you can run them using Hardhat. Open your terminal or command prompt and navigate to your project directory. Then, run the following command to run your tests:
 
-```
+```bash
 npx hardhat test
 ```
 
@@ -91,17 +91,17 @@ This command will compile your smart contracts, deploy them to a local network, 
 
 If your tests pass, you will see output similar to the following:
 
-```
+```bash
 Counter contract
 
 Congratulations, you have successfully written and run tests for your Celo smart contract using Hardhat and Solidity!
 ```
 
-Step 5: Deploy Your Contract
+##Step 5: Deploy Your Contract
 
 Before you can deploy your smart contract to the Celo network, you will need to configure your Hardhat environment. Create a new file called `hardhat.config.js` in your project root directory and add the following code:
 
-```
+```javascript
 
 require("@nomiclabs/hardhat-celo");
 
@@ -128,7 +128,7 @@ runs: 200
 This code configures two networks: `hardhat` and `alfajores`. `hardhat` is the default network and is used for local testing. `alfajores` is the Celo testnet network that we will use to deploy our smart contract.
 
 To deploy your smart contract, run the following command:
-```
+```bash
 npx hardhat run --network alfajores scripts/deploy.js
 ```
 This command will compile your smart contract, deploy it to the `alfajores` network, and output the contract address. Make note of the contract address, as you will need it to interact with your deployed contract.
@@ -136,11 +136,15 @@ This command will compile your smart contract, deploy it to the `alfajores` netw
 Step 6: Interact with Your Deployed Contract
 
 Now that you have deployed your smart contract, you can interact with it using the `celo-blockchain-utils` library. To use this library, install it by running the following command:
+
+```bash
 npm install --save celo-blockchain-utils
+```
 
 
 Next, create a new file called `interact.js` and add the following code:
-```
+
+```javascript
 const { newKit } = require("@celo/contractkit");
 const { privateKeyToAddress } = require("@celo/utils");
 const { Counter } = require("../artifacts/contracts/Counter.sol/Counter.json");
@@ -168,7 +172,7 @@ main();
 This code imports the `newKit()` function from the `@celo/contractkit` library, as well as the `privateKeyToAddress()` and `Counter` objects from your compiled smart contract. It then creates a new Celo kit and adds your private key to the connection so that you can interact with the network. Finally, it defines a `main()` function that retrieves the initial `count` value from your deployed contract, increments it, and retrieves the new `count` value.
 
 To run this code, run the following command:
-```
+```bash
 node interact.js
 ```
 
@@ -176,8 +180,7 @@ This command will output the initial and new `count` values.
 
 Congratulations, you have successfully written and deployed a Celo smart contract and interacted with it using Hardhat and Solidity!
 
-Conclusion
-
+##Co nclusion
 In this tutorial, we have walked you through the process of writing and testing a Celo smart contract using Hardhat and Solidity. We have also shown you how to deploy your contract to the Celo testnet and interact with it using the celo-blockchain-utils library.
 
 While this tutorial covers the basics of Celo smart contract development, there is still much more to learn. We encourage you to continue exploring the Celo network and its development ecosystem to gain a deeper understanding of how to build decentralized applications on this platform.
