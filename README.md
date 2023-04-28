@@ -1,6 +1,4 @@
-# Celo-tutorial
-
-Writing and Running Celo Contract Tests using Hardhat and Solidity for Beginners
+# Writing and Running Celo Contract Tests using Hardhat and Solidity for Beginners
 
 Celo is an open-source blockchain platform that enables developers to build decentralized applications (dApps) and smart contracts. Smart contracts are self-executing contracts with the terms of the agreement between buyer and seller being directly written into code. Testing your smart contracts is a crucial step in the development process to ensure that they are functioning correctly and as intended.
 
@@ -97,10 +95,13 @@ If your tests pass, you will see output similar to the following:
 Counter contract
 
 Congratulations, you have successfully written and run tests for your Celo smart contract using Hardhat and Solidity!
+```
 
 Step 5: Deploy Your Contract
 
 Before you can deploy your smart contract to the Celo network, you will need to configure your Hardhat environment. Create a new file called `hardhat.config.js` in your project root directory and add the following code:
+
+```
 
 require("@nomiclabs/hardhat-celo");
 
@@ -122,12 +123,14 @@ runs: 200
 }
 }
 };
+```
 
 This code configures two networks: `hardhat` and `alfajores`. `hardhat` is the default network and is used for local testing. `alfajores` is the Celo testnet network that we will use to deploy our smart contract.
 
 To deploy your smart contract, run the following command:
+```
 npx hardhat run --network alfajores scripts/deploy.js
-
+```
 This command will compile your smart contract, deploy it to the `alfajores` network, and output the contract address. Make note of the contract address, as you will need it to interact with your deployed contract.
 
 Step 6: Interact with Your Deployed Contract
@@ -137,6 +140,7 @@ npm install --save celo-blockchain-utils
 
 
 Next, create a new file called `interact.js` and add the following code:
+```
 const { newKit } = require("@celo/contractkit");
 const { privateKeyToAddress } = require("@celo/utils");
 const { Counter } = require("../artifacts/contracts/Counter.sol/Counter.json");
@@ -159,13 +163,14 @@ console.log(New count: ${newCount});
 }
 
 main();
-
+```
 
 This code imports the `newKit()` function from the `@celo/contractkit` library, as well as the `privateKeyToAddress()` and `Counter` objects from your compiled smart contract. It then creates a new Celo kit and adds your private key to the connection so that you can interact with the network. Finally, it defines a `main()` function that retrieves the initial `count` value from your deployed contract, increments it, and retrieves the new `count` value.
 
 To run this code, run the following command:
-
+```
 node interact.js
+```
 
 This command will output the initial and new `count` values.
 
