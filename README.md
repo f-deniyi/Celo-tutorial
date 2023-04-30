@@ -19,6 +19,11 @@ Before we begin, you should have the following pre-requisites:
 We will be using Hardhat, which is a development environment that makes it easy to compile, deploy and test your Smart Contracts. To install Hardhat, open your terminal or command prompt and navigate to your project directory. Then, run the following command:
 
 ```bash
+npm init -y
+```
+This will initialize a new npm project and create a “package.json” file in your project folder with default settings.
+
+```bash
 npm install --save-dev hardhat
 ```
 
@@ -59,7 +64,8 @@ This contract creates a public `count` variable and a public function `increment
 
 Now that you have written your Smart Contract, it's time to write your tests. Create a new file called `counter.test.js` in the `test` directory that Hardhat created for you. Add the following code:
 
-`const { expect } = require("chai");
+```javascript
+const { expect } = require("chai");
 
 // This test suite tests the Counter contract
 describe("Counter contract", function () {
