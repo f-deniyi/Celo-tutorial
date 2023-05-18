@@ -72,21 +72,58 @@ This will prompt you to choose an option. Select the default option (create a Ja
 Next, you will need to write your Smart Contract. For this tutorial, we will use a simple example contract that increments a counter when a function is called. Open your text editor and create a new file called `Counter.sol` in the `contracts` folder of your project. Add the following code:
 
 ``` solidity
+/**
+ * @title Counter
+ * @dev A simple smart contract that allows you to increment and decrement a counter
+ * using the SafeMath library to prevent overflow and underflow errors.
+ */
 // SPDX-License-Identifier: MIT
-// The above line specifies the license type for this contract
-
 pragma solidity ^0.8.0;
 
-// This is the main contract definition
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+
 contract Counter {
-    // This is a state variable that holds the current count
+    using SafeMath for uint256;
+
+    address public owner;
     uint256 public count;
 
-    // This function increments the count by one
+    event CountIncremented(uint256 newCount);
+    event CountDecremented(uint256 newCount);
+
+    /**
+     * @dev Modifier to ensure that only the contract owner can call a function.
+     */
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the contract owner can call this function.");
+        _;
+    }
+
+    /**
+     * @dev Constructor function that initializes the owner and count variables.
+     */
+    constructor() {
+        owner = msg.sender;
+        count = 0;
+    }
+
+    /**
+     * @dev Function to increment the counter by one.
+     */
     function increment() public {
-        count++;
+        count = count.add(1);
+        emit CountIncremented(count);
+    }
+
+    /**
+     * @dev Function to decrement the counter by one.
+     */
+    function decrement() public {
+        count = count.sub(1);
+        emit CountDecremented(count);
     }
 }
+
 
 ```
 
